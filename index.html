@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>API Cliente</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <h1>Información de Propietarios y Vehículos</h1>
+    <button id="cargarPropietarios">Cargar Propietarios</button>
+    <button id="cargarVehiculos">Cargar Vehículos</button>
+
+    <h2>Propietarios</h2>
+    <div id="propietarios"></div>
+
+    <h2>Vehículos</h2>
+    <div id="vehiculos"></div>
+
+    <script>
+        $(document).ready(function () {
+            $('#cargarPropietarios').click(function () {
+                $.getJSON('/propietarios', function (data) {
+                    var texto = JSON.stringify(data, null, 4);
+                    $('#propietarios').text(texto);
+                });
+            });
+
+            $('#cargarVehiculos').click(function () {
+                $.getJSON('/vehiculos', function (data) {
+                    var texto = JSON.stringify(data, null, 4);
+                    $('#vehiculos').text(texto);
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
